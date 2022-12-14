@@ -1,0 +1,57 @@
+<!--( extends("/master/pico.html") )-->
+
+<div class="tstEvent">
+
+    <!--( let deltaTime = 0; )-->
+    <!--( let lastHrt = 0; )-->
+
+    <!--( for(let i = 0; i < events.length; i++) { )-->
+    <div>
+        <!--( let event = events[i]; )-->
+
+        <!--( if (event.clause == "title") { )-->
+        <div>
+            <!--( { deltaTime = 0; } )-->
+            <!--( { lastHrt = event.hrt; } )-->
+            <h2>
+                <!--( event.message )-->
+            </h2>
+        </div>
+        <!--( } )-->
+
+        <!--( if (event.clause != "title" && event.clause != "init") { )-->
+        <div>
+
+            <!--( { lastHrt = event.hrt; } )-->
+            <h3>
+                [<!--( event.hrt.toFixed(4) )-->] <!--( event.message )-->
+                [<!--( event.clause )-->]
+            </h3>
+        </div>
+        <!--( } )-->
+
+        <!--( if (event.clause == "init") { )-->
+        <div>
+            <!--( { lastHrt = event.hrt; } )-->
+
+            <h3>
+                [<!--( event.hrt.toFixed(4) )-->]
+                <!--( event.message )-->
+            </h3>
+
+            <div>
+                <!--( do { )-->
+                <div>
+                    <!--( { i++; } )-->
+                    <!--( { event = events[i]; } )-->
+                    <!--( partial("/partials/spec_events.html") )-->
+                </div>
+                <!--( } while (event.clause != "resume"  || i == events.lenght); )-->
+                </section>
+            </div>
+            <!--( } )-->
+
+        </div>
+        <!--( } )-->
+
+    </div>

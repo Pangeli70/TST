@@ -1,0 +1,85 @@
+<!--( if (event.clause == "when") { )-->
+<div>
+    <!--( { lastHrt = event.hrt; } )-->
+    <h4>
+        <!--( event.message )-->
+    </h4>
+</div>
+<!--( } )-->
+
+<!--( if (event.clause == "expect") { )-->
+<div>
+    <!--( { lastHrt = event.hrt; } )-->
+    <h5>
+        <!--( event.message )-->
+    </h5>
+</div>
+<!--( } )-->
+
+<!--( if (event.clause == "success") { )-->
+<div>
+    <!--( { deltaTime = event.hrt - lastHrt; } )-->
+    <!--( { lastHrt = event.hrt; } )-->
+    <h6>
+        <!--( event.message )-->
+    </h6>
+    <p>
+        [<!--( deltaTime.toFixed(4) )-->ms]&nbsp;<span class="success">&nbsp;SUCCESS&nbsp;</span>
+    </p>
+
+    <!--( if (event.payload != undefined) { )-->
+    <div>
+        <p>
+            <!--( event.payload )-->
+        </p>
+    </div>
+    <!--( } )-->
+
+</div>
+<!--( } )-->
+
+<!--( if (event.clause == "failure") { )-->
+<div>
+    <!--( { deltaTime = event.hrt - lastHrt; } )-->
+    <!--( { lastHrt = event.hrt; } )-->
+    <h6>
+        <!--( event.message )-->
+    </h6>
+    <p>
+        [<!--( deltaTime.toFixed(4) )-->ms]&nbsp;<span class="failure">&nbsp;FAILURE&nbsp;</span>
+    </p>
+
+    <!--( if (event.payload != undefined) { )-->
+    <div>
+        <p>
+            <!--( event.payload )-->
+        </p>
+    </div>
+    <!--( } )-->
+</div>
+<!--( } )-->
+
+<!--( if (event.clause == "skip") { )-->
+<div>
+    <!--( { lastHrt = event.hrt; } )-->
+    <h6>
+        <!--( event.message )-->
+    </h6>
+    <p>
+        [<!--( deltaTime.toFixed(4) )-->ms]&nbsp;<span class="skipped">&nbsp;SKIPPED&nbsp;</span>
+    </p>
+</div>
+<!--( } )-->
+
+<!--( if (event.clause == "resume") { )-->
+<div>
+    <h5>
+        <!--( event.message )-->
+    </h5>
+    <!--( if (event.payload != undefined) { )-->
+    <p>
+        <!--( event.payload )-->
+    </p>
+    <!--( } )-->
+</div>
+<!--( } )-->
