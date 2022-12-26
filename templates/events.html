@@ -21,7 +21,6 @@
 
         <!--( if (event.clause != "title" && event.clause != "init") { )-->
         <div>
-
             <!--( { lastHrt = event.hrt; } )-->
             <h3>
                 [<!--( event.hrt.toFixed(4) )-->] <!--( event.message )-->
@@ -39,19 +38,18 @@
                 <!--( event.message )-->
             </h3>
 
+            <!--( do { )-->
             <div>
-                <!--( do { )-->
-                <div>
-                    <!--( { i++; } )-->
-                    <!--( { event = events[i]; } )-->
-                    <!--( partial("/partials/spec_events.html") )-->
-                </div>
-                <!--( } while (event.clause != "resume"  || i == events.lenght); )-->
-                </section>
+                <!--( { i++; } )-->
+                <!--( { event = events[i]; } )-->
+                <!--( partial("/partials/spec_events.html") )-->
             </div>
-            <!--( } )-->
+            <!--( } while (event.clause != "resume"  || i == events.lenght);)-->
+
 
         </div>
         <!--( } )-->
 
     </div>
+    <!--( } )-->
+</div>
