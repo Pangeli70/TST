@@ -17,8 +17,7 @@ export class ApgTstEventsResource extends Drash.Resource {
         const rawSpecs = request.pathParam("specs") as string;
         const rawIndex = request.pathParam("index") as string;
 
-        const index = parseInt(rawIndex);
-
+        const index = rawIndex == "last" ? -1 : parseInt(rawIndex); 
 
         const result = ApgTstService.ResultOfSpec(rawFramework, rawSpecs, index);
 
@@ -33,7 +32,7 @@ export class ApgTstEventsResource extends Drash.Resource {
                 toolbar: "",
                 released: "2022/12/13"
             },
-            events: result?.events 
+            events: result?.events
         };
 
         const html = await Tng.ApgTngService.Render("/events.html", templateData) as string;

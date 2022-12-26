@@ -105,17 +105,39 @@ export class ApgTstService {
         return r;
     }
 
+    /**
+     * Get the events of the spec
+     * @param aframework Name of th framework
+     * @param aspecs Name of the specs
+     * @param aindex If negative returns the last 
+     * @returns List of events associated with the spec
+     */
     static ResultOfSpec(aframework: ApgTstFramework, aspecs: ApgTstSpecsName, aindex: number) {
+
+        if (isNaN(aindex)) { 
+            return null;
+        }
+
         if (!this._frameworksSpecs.has(aframework)) {
             return null;
         }
+
         const frameworkSpecs = this._frameworksSpecs.get(aframework)!;
         if (!frameworkSpecs.has(aspecs)) {
             return null;
         }
+
         const specs = frameworkSpecs.get(aspecs)!;
-        if (aindex < 0 && aindex >= specs.stack.length) { 
+        if (aindex >= specs.stack.length) {
             return null;
+        }
+        if (specs.stack.length == 0) {
+            return null;
+        }
+
+        // means last
+        if (aindex < 0) {
+            aindex = specs.stack.length - 1
         }
 
         const r = specs.stack[aindex];
