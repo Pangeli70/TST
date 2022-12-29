@@ -16,7 +16,7 @@ export class ApgTstStoreResource extends Drash.Resource {
     }
 
     public POST (request: Drash.Request, response: Drash.Response) {
-        //TODO all the data validation here --APG 20221213
+        //TODO @8 APG 20221213 -- all the data validation here
         const framework = <string>request.bodyParam("framework");
         const specs = <string>request.bodyParam("specs");
         const events = <Uts.IApgUtsSpecEvent[]>request.bodyParam("events")
