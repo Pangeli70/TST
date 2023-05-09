@@ -1,11 +1,12 @@
 /** -----------------------------------------------------------------------
- * @module [TST/Resources]
+ * @module [apg-tst]
  * @author [APG] ANGELI Paolo Giusto
  * @version 0.9.3 [APG 2022/12/13] Deno Deploy Beta
+ * @version 0.9.7 [APG 2023/05/08] Separation of concerns Lib/Srv
  * -----------------------------------------------------------------------
  */
-import { Drash, Tng } from "../../deps.ts";
-import { ApgTstService } from "../../src/mod.ts";
+import { Drash, Tng } from "../deps.ts";
+import { ApgTstService } from "../../lib/mod.ts";
 
 export class ApgTstEventsResource extends Drash.Resource {
 

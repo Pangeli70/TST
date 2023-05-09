@@ -1,11 +1,12 @@
 /** -----------------------------------------------------------------------
- * @module [TST]
+ * @module [apg-tst]
  * @author [APG] ANGELI Paolo Giusto
  * @version 0.9.3 [APG 2022/12/13] Deno Deploy Beta
+ * @version 0.9.7 [APG 2023/05/08] Separation of concerns Lib/Srv
  * -----------------------------------------------------------------------
  */
 
-import { Uts, Rst } from "../../deps.ts";
+import { Uts } from "../deps.ts";
 
 
 export type ApgTstSpecsName = string;
@@ -57,8 +58,6 @@ export class ApgTstService {
             events: aevents
         }
         specs.stack.push(specResult);
-
-        return new Rst.ApgRst();
 
     }
 
@@ -114,7 +113,7 @@ export class ApgTstService {
      */
     static ResultOfSpec(aframework: ApgTstFramework, aspecs: ApgTstSpecsName, aindex: number) {
 
-        if (isNaN(aindex)) { 
+        if (isNaN(aindex)) {
             return null;
         }
 

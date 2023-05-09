@@ -1,11 +1,12 @@
 /** -----------------------------------------------------------------------
- * @module [TST/Resources]
+ * @module [apg-tst]
  * @author [APG] ANGELI Paolo Giusto
  * @version 0.9.3 [APG 2022/12/13] Deno Deploy Beta
+ * @version 0.9.7 [APG 2023/05/08] Separation of concerns Lib/Srv
  * -----------------------------------------------------------------------
  */
-import { Drash, Uts} from "../../deps.ts";
-import { ApgTstService } from "../../src/mod.ts";
+import { Drash, Uts} from "../deps.ts";
+import { ApgTstService } from "../../lib/mod.ts";
 
 export class ApgTstStoreResource extends Drash.Resource {
 
@@ -21,8 +22,8 @@ export class ApgTstStoreResource extends Drash.Resource {
         const specs = <string>request.bodyParam("specs");
         const events = <Uts.IApgUtsSpecEvent[]>request.bodyParam("events")
 
-        const r = ApgTstService.Store(framework!, specs!, events!);
-        response.json(r);
+        ApgTstService.Store(framework!, specs!, events!);
+        response.json({ok:true});
 
     }
 

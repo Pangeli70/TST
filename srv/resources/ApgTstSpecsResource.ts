@@ -1,41 +1,42 @@
 /** -----------------------------------------------------------------------
- * @module [TST/Resources]
+ * @module [apg-tst]
  * @author [APG] ANGELI Paolo Giusto
  * @version 0.9.3 [APG 2022/12/13] Deno Deploy Beta
  * -----------------------------------------------------------------------
  */
-import { Drash, Tng } from "../../deps.ts";
-import { ApgTstService } from "../../src/mod.ts";
+import { Drash, Tng } from "../deps.ts";
+import { ApgTstService } from "../../lib/mod.ts";
 
-export class ApgTstFrameworkResource extends Drash.Resource {
+export class ApgTstSpecsResource extends Drash.Resource {
 
-    public override paths = ["/framework/:framework"];
+    public override paths = ["/specs/:framework/:specs"];
 
     public async GET(request: Drash.Request, response: Drash.Response) {
 
         const rawFramework = request.pathParam("framework") as string;
+        const rawSpecs = request.pathParam("specs") as string;
 
         const menu: {
             href: string,
             caption: string
         }[] = [];
-        const specs = ApgTstService.SpecsOfFramework(rawFramework!);
-        for (const spec of specs!) { 
+        const results = ApgTstService.ResultsOfSpecs(rawFramework!, rawSpecs!);
+        for (let i = 0; i < results!.length; i++) {
             const item = {
-                href: "/specs/" + rawFramework +"/" + spec,
-                caption: spec
+                href: "/events/" + rawFramework + "/" + rawSpecs + "/" + i.toString(),
+                caption: results[i].date.toISOString()
             };
             menu.push(item);
         }
 
 
         const templateData = {
-            site: { 
+            site: {
                 name: "Apg-Tst",
                 title: "Browse Apg tests results"
             },
             page: {
-                title: "List of specs for the [" + rawFramework + "] framework",
+                title: "Stack of results for the " + rawFramework + "/" + rawSpecs + " specs",
                 toolbar: "",
                 released: "2022/12/13"
             },
