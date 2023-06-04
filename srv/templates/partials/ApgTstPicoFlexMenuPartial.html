@@ -1,0 +1,29 @@
+<!--(
+const ApgTstPicoFlexMenuPartial = {
+    module: "apg-tst",
+    author: "[APG] ANGELI Paolo Giusto",
+    version: "0.9.7 [APG 2023/06/04]",
+    remarks: "This version uses the assets from https://apg-cdn.deno.dev and custom bengin/end markup.",
+    arguments:["menu"]
+} 
+)-->
+
+<!--( for (const link of menu) { )-->
+<div style="display: flex; flex-flow: row wrap; align-items: center;">
+    <div>
+        <h2 style="margin: 1rem;">
+            <!--( if( link.href !="" ){ )-->
+            <div>
+                <a href="<!--( link.href )-->" role="button" style="min-width: 50%;">
+                    <!--( link.caption )-->
+                </a>
+            </div>
+            <!--( } else { )-->
+            <div>
+                <!--( link.caption )-->
+            </div>
+            <!--( } )-->
+        </h2>
+    </div>
+</div>
+<!--( })-->

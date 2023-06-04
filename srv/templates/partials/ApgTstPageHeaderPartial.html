@@ -1,0 +1,42 @@
+<!--(
+const ApgTstPageHeaderPartial = {
+    module: "apg-tst",
+    author: "[APG] ANGELI Paolo Giusto",
+    version: "0.9.7 [APG 2023/06/04]",
+    remarks: "This version uses the assets from https://apg-cdn.deno.dev and custom bengin/end markup.",
+    arguments:["site", "page"]
+} 
+)-->
+
+<header style="padding: 0">
+    <section id="title" style="padding: 0; margin: 0">
+        <table>
+            <tr>
+                <td style="width:4rem">
+                    <a href="/">
+                        <img src="https://apg-cdn.deno.dev/assets/img/png/APG-logo-2022-128px.png"
+                             style="min-width:3rem; min-height:3rem; " />
+                    </a>
+                </td>
+                <td>
+                    <h2 style="margin-bottom: 0px">
+                        <!--( site.name )--><br>
+                        <span style="font-size: 50%"><!--( site.title )--></span>
+                    </h2>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <!--( if(page.toolbar) {)-->
+    <section id="bar" style="text-align: center;">
+        <!--( page.toolbar )-->
+        <hr>
+    </section>
+    <!--( } )-->
+
+    <h1 class="apg-page-title">
+        <!--( page.title )-->
+    </h1>
+
+</header>

@@ -1,0 +1,50 @@
+<!--(
+const ApgTstPicoDeployMaster = {
+    module: "apg-tst",
+    author: "[APG] ANGELI Paolo Giusto",
+    version: "0.9.7 [APG 2023/06/04]",
+    remarks: "This version uses the assets from https://apg-cdn.deno.dev and custom bengin/end markup.",
+    arguments:["site","page"]
+} 
+)-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>
+      <!--( site.name )-->: <!--( page.title )-->
+    </title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="author" content="APG Angeli Paolo Giusto" />
+    <meta name="generator" content="Deno+Drash" />
+    <meta name="keywords" content="Deno, Drash, APG, Angeli Paolo Giusto, Paolo Angeli" />
+    <meta name="application-name" content="<!--( site.name )-->" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon"
+          href="https://apg-cdn.deno.dev/assets/img/ico/Apg-favicon-2022.ico" />
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@picocss/pico@latest/css/pico.classless.min.css" />
+    <link rel="stylesheet" href="https://apg-cdn.deno.dev/assets/css/Apg-pico-custom.css" />
+
+
+  </head>
+
+  <body>
+    <!--( partial("/partials/ApgTstPageHeaderPartial.html") )-->
+
+    <main style="padding: 0">
+      <!--( yield )-->
+    </main>
+
+    <!--( partial("/partials/ApgTstPageFooterPartial.html") )-->
+
+  </body>
+
+</html>

@@ -4,22 +4,19 @@
  * @version 0.9.3 [APG 2022/12/13] Deno Deploy Beta
  * -----------------------------------------------------------------------
  */
-import { Drash, Tng } from "../deps.ts";
+import { Edr, Tng, Dir, Uts } from "../deps.ts";
 import { ApgTstService } from "../../lib/mod.ts";
 
-export class ApgTstSpecsResource extends Drash.Resource {
+export class ApgTstSpecsResource extends Edr.Drash.Resource {
 
     public override paths = ["/specs/:framework/:specs"];
 
-    public async GET(request: Drash.Request, response: Drash.Response) {
+    public async GET(request: Edr.Drash.Request, response: Edr.Drash.Response) {
 
         const rawFramework = request.pathParam("framework") as string;
         const rawSpecs = request.pathParam("specs") as string;
 
-        const menu: {
-            href: string,
-            caption: string
-        }[] = [];
+        const menu: Uts.IApgUtsHyperlink[] = [];
         const results = ApgTstService.ResultsOfSpecs(rawFramework!, rawSpecs!);
         for (let i = 0; i < results!.length; i++) {
             const item = {
@@ -30,10 +27,12 @@ export class ApgTstSpecsResource extends Drash.Resource {
         }
 
 
+        const site = Dir.ApgDirEntries[Dir.eApgDirEntriesIds.tst];
+
         const templateData = {
             site: {
-                name: "Apg-Tst",
-                title: "Browse Apg tests results"
+                name: site.caption,
+                title: site.title
             },
             page: {
                 title: "Stack of results for the " + rawFramework + "/" + rawSpecs + " specs",
@@ -43,7 +42,7 @@ export class ApgTstSpecsResource extends Drash.Resource {
             menu
         };
 
-        const html = await Tng.ApgTngService.Render("/index.html", templateData) as string;
+        const html = await Tng.ApgTngService.Render("/ApgTstIndexPage.html", templateData) as string;
 
         response.html(html);
 

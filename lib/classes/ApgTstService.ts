@@ -6,7 +6,7 @@
  * -----------------------------------------------------------------------
  */
 
-import { Uts } from "../deps.ts";
+import { Spc } from "../deps.ts";
 
 
 export type ApgTstSpecsName = string;
@@ -14,7 +14,7 @@ export type ApgTstFramework = string;
 
 export type ApgTstSpecResult = {
     date: Date,
-    events: Uts.IApgUtsSpecEvent[]
+    events: Spc.IApgSpcEvent[]
 }
 
 
@@ -35,7 +35,7 @@ export class ApgTstService {
     static Store(
         aframework: ApgTstFramework,
         aspecs: ApgTstSpecsName,
-        aevents: Uts.IApgUtsSpecEvent[]
+        aevents: Spc.IApgSpcEvent[]
     ) {
 
         if (!this._frameworksSpecs.has(aframework)) {

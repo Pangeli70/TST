@@ -5,35 +5,34 @@
  * @version 0.9.7 [APG 2023/05/08] Separation of concerns Lib/Srv
  * -----------------------------------------------------------------------
  */
-import { Drash, Tng } from "../deps.ts";
+import { Edr, Tng, Dir, Uts } from "../deps.ts";
 import { ApgTstService } from "../../lib/mod.ts";
 
-export class ApgTstFrameworkResource extends Drash.Resource {
+export class ApgTstFrameworkResource extends Edr.Drash.Resource {
 
     public override paths = ["/framework/:framework"];
 
-    public async GET(request: Drash.Request, response: Drash.Response) {
+    public async GET(request: Edr.Drash.Request, response: Edr.Drash.Response) {
 
         const rawFramework = request.pathParam("framework") as string;
 
-        const menu: {
-            href: string,
-            caption: string
-        }[] = [];
+        const menu: Uts.IApgUtsHyperlink[] = [];
         const specs = ApgTstService.SpecsOfFramework(rawFramework!);
-        for (const spec of specs!) { 
+        for (const spec of specs!) {
             const item = {
-                href: "/specs/" + rawFramework +"/" + spec,
+                href: "/specs/" + rawFramework + "/" + spec,
                 caption: spec
             };
             menu.push(item);
         }
 
 
+        const site = Dir.ApgDirEntries[Dir.eApgDirEntriesIds.tst];
+
         const templateData = {
-            site: { 
-                name: "Apg-Tst",
-                title: "Browse Apg tests results"
+            site: {
+                name: site.caption,
+                title: site.title
             },
             page: {
                 title: "List of specs for the [" + rawFramework + "] framework",
@@ -43,7 +42,7 @@ export class ApgTstFrameworkResource extends Drash.Resource {
             menu
         };
 
-        const html = await Tng.ApgTngService.Render("/index.html", templateData) as string;
+        const html = await Tng.ApgTngService.Render("/ApgTstIndexPage.html", templateData) as string;
 
         response.html(html);
 

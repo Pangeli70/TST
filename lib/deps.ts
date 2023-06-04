@@ -7,4 +7,5 @@
 
 // Apg github repos
 export * as Uts from "https://raw.githubusercontent.com/Pangeli70/apg-uts/master/mod.ts";
+export * as Spc from "https://raw.githubusercontent.com/Pangeli70/apg-spc/master/mod.ts";
 

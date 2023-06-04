@@ -5,28 +5,28 @@
  * @version 0.9.7 [APG 2023/05/08] Separation of concerns Lib/Srv
  * -----------------------------------------------------------------------
  */
-import { Drash, Tng } from "../deps.ts";
+import { Edr, Tng, Dir } from "../deps.ts";
 import { ApgTstService } from "../../lib/mod.ts";
 
-export class ApgTstEventsResource extends Drash.Resource {
+export class ApgTstEventsResource extends Edr.Drash.Resource {
 
     public override paths = ["/events/:framework/:specs/:index"];
 
-    public async GET(request: Drash.Request, response: Drash.Response) {
+    public async GET(request: Edr.Drash.Request, response: Edr.Drash.Response) {
 
         const rawFramework = request.pathParam("framework") as string;
         const rawSpecs = request.pathParam("specs") as string;
         const rawIndex = request.pathParam("index") as string;
 
-        const index = rawIndex == "last" ? -1 : parseInt(rawIndex); 
+        const index = rawIndex == "last" ? -1 : parseInt(rawIndex);
 
         const result = ApgTstService.ResultOfSpec(rawFramework, rawSpecs, index);
-
+        const site = Dir.ApgDirEntries[Dir.eApgDirEntriesIds.tst];
 
         const templateData = {
             site: {
-                name: "Apg-Tst",
-                title: "Browse Apg tests results"
+                name: site.caption,
+                title: site.title
             },
             page: {
                 title: "Events  for the " + rawFramework + "/" + rawSpecs + "/" + result?.date.toISOString() + " test result",
@@ -36,7 +36,7 @@ export class ApgTstEventsResource extends Drash.Resource {
             events: result?.events
         };
 
-        const html = await Tng.ApgTngService.Render("/events.html", templateData) as string;
+        const html = await Tng.ApgTngService.Render("/ApgTstEventsPage.html", templateData) as string;
 
         response.html(html);
 

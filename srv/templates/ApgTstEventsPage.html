@@ -1,4 +1,15 @@
-<!--( extends("/master/pico.html") )-->
+<!--(
+const ApgTstEventsPage = {
+    module: "apg-tst",
+    author: "[APG] ANGELI Paolo Giusto",
+    version: "0.9.7 [APG 2023/06/04]",
+    remarks: "This version uses the assets from https://apg-cdn.deno.dev and custom bengin/end markup.",
+    arguments:["site","page","events"]
+} 
+)-->
+
+
+<!--( extends("/master/ApgTstPicoDeployMaster.html") )-->
 
 <div class="tstEvent">
 
@@ -42,7 +53,7 @@
             <div>
                 <!--( { i++; } )-->
                 <!--( { event = events[i]; } )-->
-                <!--( partial("/partials/spec_events.html") )-->
+                <!--( partial("/partials/ApgTstSpecEventsPartial.html","event") )-->
             </div>
             <!--( } while (event.clause != "resume"  || i == events.lenght);)-->
 
